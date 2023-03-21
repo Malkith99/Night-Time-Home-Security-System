@@ -10,8 +10,8 @@
 #define BLYNK_AUTH_TOKEN "Wh4gTu7qpujmajtg99wpFlx2LTgT5anz" //Enter your blynk auth token
 
 char auth[] = BLYNK_AUTH_TOKEN;
-char ssid[] = "SLT_FIBRE";//Enter your WIFI name
-char pass[] = "638080338";//Enter your WIFI password
+char ssid[] = "Dialog 4G";//Enter your WIFI name
+char pass[] = "19LGJAMFE14";//Enter your WIFI password
 
 #define pirPin 5                // Input for HC-S501
 int pirValue;                   // Place to store read PIR Value
@@ -41,8 +41,8 @@ void loop() {
       if (pinValue == HIGH)    
       {
         digitalWrite(D2, HIGH);
-        digitalWrite(D0, LOW);
-        getPirValue();
+        //digitalWrite(D0, LOW);
+       // getPirValue();
       }else{
          digitalWrite(D2, LOW);
       }
@@ -59,6 +59,6 @@ void getPirValue(void)        //Get PIR Data
         digitalWrite(D2, LOW);
         tone(D3, 10000,800);
         delay(1000);
-      //Blynk.notify("Motion detected");  
+      Blynk.logEvent("Motion detected");  
      }
   }
