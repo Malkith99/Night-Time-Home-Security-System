@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- 
+  Rui Santos
+  Complete project details at https://RandomNerdTutorials.com  
+-->
+<html>
+<head>
+  <title>Security System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<meta http-equiv="refresh" content="5">-->
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body style="background-color: rgb(46, 46, 46)">
+<!--   <script>
+    $(document).ready(function() {
+      var url = 'http://192.168.1.130/alert'; // Replace with the URL of your server endpoint
+      $.get(url, function(response) {
+        console.log('Response:', response); // Log the response in the console
+        alert('Motion detected!');
+      }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error('Error:', errorThrown); // Log any error in the console
+      });
+    });
+  </script> -->
+  <nav>
+  <ul>
+    <li><a href="#"><b>Night Time Security Alarm and Monitering System</b></a></li>
+
+  </ul>
+</nav>
+  <h1>Security System</h1>
+  <div class="checkbox">
+    <input type="checkbox" id="switch">
+    <label for="click" class="text"></label>
+  </div>
+</body>
+ <script>
+    var bulbSwitch = document.getElementById("switch");
+    bulbSwitch.addEventListener("change", function() {
+      if (this.checked) {
+        sendRequest("on"); // Send a request to turn the bulb on
+      } else {
+        sendRequest("off"); // Send a request to turn the bulb off
+      }
+      var url = 'http://192.168.1.130/alert'; // Replace with the URL of your server endpoint
+      $.get(url, function(response) {
+        alert('Motion detected!');
+      });
+    });
+
+    function sendRequest(state) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+          console.log(this.responseText);
+        }
+      };
+      xhr.open("GET", "/switch" + state, true);
+      xhr.send();
+    }
+
+  </script>
+</html>
